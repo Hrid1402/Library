@@ -34,9 +34,14 @@ addBookToLibrary();
 
 //
 addMyBookBtn.addEventListener("click",() =>{
-    if(title.value == "" || author.value == "" || pages.value == ""){
-        alert("Please complete the spaces");
-    }else{
+    console.log(title.validity.tooLong);
+    if(title.validity.valueMissing){
+        alert("Title is empty");
+    }else if(author.validity.valueMissing){
+        alert("Author is empty");
+    }else if(pages.validity.valueMissing){
+        alert("Numberof pages  is empty");
+    }else {
         //createObject
         console.log("Book:")
         myLibrary.push(new Book(title.value, author.value, pages.value));
@@ -93,18 +98,9 @@ function addBookToLibrary() {
                 books[index].remove();
             }
         });
-        /*console.log(books[index]);
-        console.log("index " + index);
-        console.log("libro titulo " + myLibrary[index].title);
-        
-        myLibrary.splice(index, 1)
-        while (books[index].firstChild) {
-            books[index].removeChild(books[index].firstChild);
-        }
-        console.log(myLibrary);
-        books[index].remove();
-        */
+
     });
+
     //
     svgElement.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     svgElement.setAttribute("width", "24");
